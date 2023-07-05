@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import puppeteer from 'puppeteer';
+// import puppeteer from 'puppeteer';
 import chromium from "chrome-aws-lambda";
 import playwright from "playwright-core";
 import { EdicaoJurisprudencia } from '../types/types';
