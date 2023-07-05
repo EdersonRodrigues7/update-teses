@@ -1,5 +1,7 @@
 import cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
+import chromium from "chrome-aws-lambda";
+import playwright from "playwright-core";
 import { EdicaoJurisprudencia } from '../types/types';
 
 class EditionScraper {
@@ -63,11 +65,17 @@ class EditionScraper {
     }
 
     private async getHtmlFromPage(url: string) {
-        const browser = await puppeteer.launch({ headless: "new" });
-        const page = await browser.newPage();
-        await page.setUserAgent(
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36'
-        );
+        // const browser = await puppeteer.launch({ headless: "new" });
+        const browser = await playwright.chromium.launch({
+            args: [...chromium.args],
+            executablePath: await chromium.executablePath,
+            headless: true
+        });
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        // await page.setUserAgent(
+        //     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36'
+        // );
         await page.goto(url);
         const html = await page.content();
         await browser.close();
