@@ -68,7 +68,7 @@ class EditionScraper {
         const browser = await puppeteer.launch({
             args: chromium.args,
             headless: chromium.headless,
-            executablePath: await chromium.executablePath("/browsers/chromium")
+            executablePath: await chromium.executablePath("https://github.com/Sparticuz/chromium/releases/download/v112.0.2/chromium-v112.0.2-pack.tar")
         });
 
         const page = await browser.newPage();
