@@ -66,7 +66,7 @@ class EditionScraper {
     private async getHtmlFromPage(url: string) {
         const browser = await puppeteer.launch({
             headless: true,
-            executablePath: "./chrome/linux-114.0.5735.133/chrome-linux64/chrome"
+            executablePath: "/vercel/path0/chrome/linux-114.0.5735.133/chrome-linux64/chrome"
         });
 
         const page = await browser.newPage();
