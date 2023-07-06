@@ -1,6 +1,6 @@
 import cheerio from 'cheerio';
 import puppeteer from 'puppeteer-core';
-import chromium from '@sparticuz/chromium';
+import chromium from '@sparticuz/chromium-min';
 import { EdicaoJurisprudencia } from '../types/types';
 
 class EditionScraper {
@@ -68,7 +68,7 @@ class EditionScraper {
         const browser = await puppeteer.launch({
             args: chromium.args,
             headless: chromium.headless,
-            executablePath: await chromium.executablePath()
+            executablePath: await chromium.executablePath("/browsers/chromium")
         });
 
         const page = await browser.newPage();
