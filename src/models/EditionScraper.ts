@@ -1,6 +1,6 @@
 import cheerio from 'cheerio';
-import puppeteer from 'puppeteer-core';
-import chromium from '@sparticuz/chromium-min';
+import puppeteer from 'puppeteer';
+// import chromium from '@sparticuz/chromium-min';
 import { EdicaoJurisprudencia } from '../types/types';
 
 class EditionScraper {
@@ -65,12 +65,12 @@ class EditionScraper {
     }
 
     private async getHtmlFromPage(url: string) {
-        const browser = await puppeteer.launch({
-            args: chromium.args,
-            headless: chromium.headless,
-            executablePath: await chromium.executablePath("https://github.com/Sparticuz/chromium/releases/download/v112.0.2/chromium-v112.0.2-pack.tar")
-        });
-
+        // const browser = await puppeteer.launch({
+        //     args: chromium.args,
+        //     headless: chromium.headless,
+        //     executablePath: await chromium.executablePath("/browsers/chromium")
+        // });
+        const browser = await puppeteer.launch({ headless: "new" })
         const page = await browser.newPage();
         await page.setUserAgent(
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36'
