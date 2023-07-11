@@ -21,8 +21,7 @@ class TeseScraper {
 
             const tesesDoc = $(".divEdicaoJT").find("div.clsTemasJT");
             tesesDoc.each((index, el) => {
-                const teseName = `Edição ${i} -${theme} - Tese ${index + 1}`;
-                const slug = "";
+                const teseName = `Edição ${i} - Tese ${index + 1}`;
                 const description = $(el).find("div.clsSubmitPesquisaTema > a").text().replaceAll("\n", " ");
 
                 const tese: TeseJurisprudencia = {

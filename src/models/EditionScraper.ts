@@ -1,6 +1,5 @@
 import cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
-// import chromium from '@sparticuz/chromium-min';
 import { EdicaoJurisprudencia } from '../types/types';
 
 class EditionScraper {
@@ -24,7 +23,7 @@ class EditionScraper {
 
             // Parse Name
             const rawName = $(el).find("a.clsLinkEdicao span").text();
-            const parsedName = rawName.replace("N. ", "").replace(":", " -");
+            const parsedName = rawName.replace("N. ", "").replace(":", " -").toLowerCase();
 
             // Build edition
             const edition: EdicaoJurisprudencia = {
@@ -65,11 +64,6 @@ class EditionScraper {
     }
 
     private async getHtmlFromPage(url: string) {
-        // const browser = await puppeteer.launch({
-        //     args: chromium.args,
-        //     headless: chromium.headless,
-        //     executablePath: await chromium.executablePath("/browsers/chromium")
-        // });
         const browser = await puppeteer.launch({
             headless: "new",
             args: ['--no-sandbox', '--disable-setuid-sandbox']
