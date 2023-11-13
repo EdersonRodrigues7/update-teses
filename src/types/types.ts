@@ -25,3 +25,23 @@ type EditionsQuery = {
 export interface CustomRequest {
     query: EditionsQuery
 };
+
+export interface JurisprudenciaEmTesesRequest {
+    query: EditionsQuery
+};
+
+export interface TemaSTF {
+    name: string;
+    position: number;
+    relator: string;
+    is_repercussao: number;
+    tese: string;
+};
+
+type TemaSTFBody = {
+    temas: number[];
+};
+
+export interface TemaSTFRequest {
+    body: TemaSTFBody;
+}
