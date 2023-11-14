@@ -1,5 +1,6 @@
 import { load } from 'cheerio';
 
+// JURISPRUDENCIA EM TESES
 export interface EdicaoJurisprudencia {
     name: string;
     number: number | undefined;
@@ -30,6 +31,7 @@ export interface JurisprudenciaEmTesesRequest {
     query: EditionsQuery
 };
 
+// TEMAS STF
 export interface TemaSTF {
     name: string;
     position: number;
@@ -44,4 +46,21 @@ type TemaSTFBody = {
 
 export interface TemaSTFRequest {
     body: TemaSTFBody;
-}
+};
+
+// TEMAS STJ
+export interface TemaSTJ {
+    name: string;
+    position: number;
+    relator: string;
+    is_repetitivo: number;
+    tese: string;
+};
+
+type TemaSTJBody = {
+    temas: number[];
+};
+
+export interface TemaSTJRequest {
+    body: TemaSTJBody;
+};
