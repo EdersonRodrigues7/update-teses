@@ -5,14 +5,14 @@ import { TemaSTF } from '../types/types';
 class TemaStfScraper {
     constructor(
         private baseUrl: string,
-        private target: number[]
+        private temasToGet: number[]
     ) { }
 
     public async getTemasSTF(): Promise<TemaSTF[]> {
         const temas: TemaSTF[] = [];
 
-        for (let i = 0; i < this.target.length; i++) {
-            const position = this.target[i];
+        for (let i = 0; i < this.temasToGet.length; i++) {
+            const position = this.temasToGet[i];
             const url = `${this.baseUrl}${position}`;
             const firstPage = await this.getHtmlFromPage(url);
             const firstPageDoc = cheerio.load(firstPage);
@@ -42,7 +42,7 @@ class TemaStfScraper {
     }
 
     private async getHtmlFromPage(url: string): Promise<string> {
-        const browser = await puppeteer.launch({ headless: "new" });
+        const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
         const page = await browser.newPage();
         await page.setUserAgent(
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36'
