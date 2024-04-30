@@ -6,13 +6,13 @@ class JurisprudenciaController {
     constructor() { }
 
     static async lastEdition() {
-        const scraper = new EditionScraper("https://processo.stj.jus.br/SCON/jt/jt.jsp");
+        const scraper = new EditionScraper("https://scon.stj.jus.br/SCON/jt/jt.jsp");
         const response = scraper.getLastEdition();
         return response;
     }
 
     static async tesesFromEdition(edition: number) {
-        const scraper = new TeseScraper("https://processo.stj.jus.br/SCON/jt/doc.jsp?livre=", edition, edition);
+        const scraper = new TeseScraper("https://scon.stj.jus.br/SCON/jt/doc.jsp?livre=", edition, edition);
         const response = scraper.getTesesByEdition();
         return response;
     }
